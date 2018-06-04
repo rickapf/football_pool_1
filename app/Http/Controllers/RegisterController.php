@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\RegisterUser;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,7 +22,7 @@ class RegisterController extends Controller
     /**
      * Process registration form
      *
-     * @param Request $request
+     * @param RegisterUser $request
      */
     public function register(RegisterUser $request)
     {

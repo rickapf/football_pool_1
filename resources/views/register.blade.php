@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label>Confirm Password:</label>
-                            <input type="password name="password_confirmation" maxlength="30" value="{{old('password_confirmation')}}" class="form-control">
+                            <input type="password" name="password_confirmation" maxlength="30" value="{{old('password_confirmation')}}" class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg float-right">Submit</button>
