@@ -20,19 +20,21 @@ class RegisterController extends Controller
 
 
     /**
-     * Process registration form
-     *
      * @param RegisterUser $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function register(RegisterUser $request)
     {
         $data = $request->validated();
 
-        User::create([
+        $user = User::create([
             'fname'    => $data['fname'],
             'lname'    => $data['lname'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
+
+        return back()->with(['fname' => $user->fname]);
     }
 }
