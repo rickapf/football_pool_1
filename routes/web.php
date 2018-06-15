@@ -12,8 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('register', 'RegisterController@form')->name('reg_form');
-Route::post('register', 'RegisterController@register')->name('register');
+Route::get('login', 'Auth\LoginController@form')->name('login_form');
+
+Route::get('register', 'Auth\RegisterController@form')->name('reg_form');
+Route::post('register', 'Auth\RegisterController@register')->name('register');

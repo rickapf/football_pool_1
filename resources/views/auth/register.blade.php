@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-4 offset-md-4">
             @if (session('fname'))
                 <div class="card">
                     <div class="card-header bg-success text-center text-white">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Email Address:</label>
-                                <input type="email" name="email" maxlength="30" value="{{old('email')}}" class="form-control">
+                                <input type="email" name="email" maxlength="50" value="{{old('email')}}" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
@@ -48,7 +48,7 @@
                                 <input type="password" name="password_confirmation" maxlength="30" value="{{old('password_confirmation')}}" class="form-control">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-lg float-right">Submit</button>
+                                <button type="submit" class="btn btn-outline-primary btn-default float-right">Submit</button>
                             </div>
                         </form>
                     </div>
