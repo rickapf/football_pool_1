@@ -12,20 +12,20 @@
                         <h3 class="mb-0 text-primary">Login <i class="fas fa-sign-in-alt float-right"></i></h3>
                     </div>
                     <div class="card-body">
-                        <form class="form text-dark" method="post" action="{{route('register')}}">
+                        <form class="form text-dark" method="post" action="{{route('authenticate')}}">
                             @csrf
                             <div class="form-group">
                                 <label>Name:</label>
-                                <select name="name" class="form-control">
+                                <select name="id" class="form-control">
                                     <option value=""></option>
                                     @foreach ($users as $user)
-                                        <option value="{{$user['id']}}">{{$user['fname'] . ' ' . $user['lname']}}</option>
+                                        <option value="{{$user['id']}}" @if($user['id'] == old('id')) selected @endif>{{$user['fname'] . ' ' . $user['lname']}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
-                                <input type="password" name="password" maxlength="30" value="{{old('password')}}" class="form-control">
+                                <input type="password" name="password" maxlength="30" value="" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-primary btn-default float-right">Submit</button>

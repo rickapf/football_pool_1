@@ -3,29 +3,38 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Http\Requests\RegisterUser;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
 {
+    /**
+     * RegisterController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+
     /**
      * Show registration form
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function form()
+    public function index()
     {
         return view('auth.register', []);
     }
 
 
     /**
-     * @param RegisterUser $request
+     * @param RegisterRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(RegisterUser $request)
+    public function createUser(RegisterRequest $request)
     {
         $data = $request->validated();
 

@@ -18,6 +18,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'fname'    => $faker->firstName,
         'lname'    => $faker->lastName,
         'email'    => $faker->email,
-        'password' => $faker->password
+        'password' => Hash::make('pool')
     ];
 });

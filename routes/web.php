@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('login', 'Auth\LoginController@form')->name('login_form');
+Route::get('login', 'Auth\LoginController@index')->name('login');
+Route::post('login', 'Auth\LoginController@authenticate')->name('authenticate');
 
-Route::get('register', 'Auth\RegisterController@form')->name('reg_form');
-Route::post('register', 'Auth\RegisterController@register')->name('register');
+Route::get('register', 'Auth\RegisterController@index')->name('register');
+Route::post('register', 'Auth\RegisterController@createUser')->name('create_user');
+
+Route::get('logout', 'Auth\LogoutController@index')->name('logout');

@@ -17,9 +17,21 @@
             <img src="/img/team_logos.png">
         </div>
         <h4 class="p-1 text-primary font-weight-bold">Thomas Fitzgerald Sr. Memorial Football Pool</h4>
+        @if (Auth::user())
+            <div class="text-center" role="groupx">
+                <button type="button" class="btn btn-sm btn-outline-primary">HOME</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">RULES/INFO</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">PICKS</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">STANDINGS</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">FEEDBACK</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">ADMIN</button>
+                <button type="button" class="btn btn-sm btn-outline-primary">LOGOUT</button>
+            </div>
+        @endif
     </div>
 
     <hr>
+
 
     @yield('content')
 

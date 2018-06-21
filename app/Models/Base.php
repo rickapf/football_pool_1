@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Base extends Model
+class Base extends Authenticatable
 {
     /**
      * Set $guarded to empty array to avoid mass assignment errors.
@@ -31,6 +31,7 @@ class Base extends Model
      *
      * @link https://laracasts.com/discuss/channels/eloquent/do-i-really-need-to-use-protected-fillable-if
      * @var  array
+     *
      */
     protected $guarded = [];
 }

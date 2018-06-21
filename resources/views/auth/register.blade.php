@@ -4,7 +4,10 @@
 
     <div class="row">
         <div class="col-md-4 offset-md-4">
+
             @if (session('fname'))
+
+                <!-- SUCCESSFULLY REGISTERED -->
                 <div class="card">
                     <div class="card-header bg-success text-center text-white">
                         <h4>Welcome to the pool {{session('fname')}}!</h4>
@@ -15,17 +18,20 @@
                         <li class="list-group-item">Use the 'Feedback' form to contact me with any questions or concerns.</li>
                     </ul>
                     <div class="card-body text-center">
-                        <a href="/login" class="btn btn-outline-primary">Login</a>
+                        <a href="{{route('login_form')}}" class="btn btn-outline-primary">Login</a>
                     </div>
                 </div>
+
             @else
+
+                <!-- REGISTRATION FORM -->
                 @include('partials.errors')
                 <div class="card card-outline-secondary">
                     <div class="card-header">
                         <h3 class="mb-0 text-primary">Register <i class="fas fa-user-plus float-right"></i></h3>
                     </div>
                     <div class="card-body">
-                        <form class="form text-dark" method="post" action="{{route('register')}}">
+                        <form class="form text-dark" method="post" action="{{route('create_user')}}">
                             @csrf
                             <div class="form-group">
                                 <label>First Name:</label>
@@ -41,11 +47,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
-                                <input type="password" name="password" maxlength="30" value="{{old('password')}}" class="form-control">
+                                <input type="password" name="password" maxlength="30" value="" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password:</label>
-                                <input type="password" name="password_confirmation" maxlength="30" value="{{old('password_confirmation')}}" class="form-control">
+                                <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-primary btn-default float-right">Submit</button>
@@ -53,7 +59,9 @@
                         </form>
                     </div>
                 </div>
+
             @endif
+
         </div>
     </div>
 
