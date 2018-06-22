@@ -28,30 +28,55 @@
                 @include('partials.errors')
                 <div class="card card-outline-secondary">
                     <div class="card-header">
-                        <h3 class="mb-0 text-primary">Register <i class="fas fa-user-plus float-right"></i></h3>
+                        <h3 class="mb-0 text-primary"><i class="fas fa-user-plus mr-1"></i> Register</h3>
                     </div>
                     <div class="card-body">
                         <form class="form text-dark" method="post" action="{{route('create_user')}}">
                             @csrf
                             <div class="form-group">
                                 <label>First Name:</label>
-                                <input type="text" name="fname" maxlength="30" value="{{old('fname')}}" class="form-control">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                    </div>
+                                    <input type="text" name="fname" maxlength="30" value="{{old('fname')}}" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Last Name:</label>
-                                <input type="text" name="lname" maxlength="30" value="{{old('lname')}}" class="form-control">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                    </div>
+                                    <input type="text" name="lname" maxlength="30" value="{{old('lname')}}" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Email Address:</label>
-                                <input type="email" name="email" maxlength="50" value="{{old('email')}}" class="form-control">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                    </div>
+                                    <input type="email" name="email" maxlength="50" value="{{old('email')}}" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
-                                <input type="password" name="password" maxlength="30" value="" class="form-control">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                    </div>
+                                    <input type="password" name="password" maxlength="30" value="" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password:</label>
-                                <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                    </div>
+                                    <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-primary btn-default float-right">Submit</button>

@@ -32,7 +32,6 @@
 
     <hr>
 
-
     @yield('content')
 
 </div>
