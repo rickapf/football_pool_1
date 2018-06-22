@@ -30,7 +30,7 @@
         @endif
     </div>
 
-    <hr>
+    <hr class="mt-0 mb-2">
 
     @yield('content')
 

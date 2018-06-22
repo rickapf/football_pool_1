@@ -18,7 +18,7 @@
                         <li class="list-group-item">Use the 'Feedback' form to contact me with any questions or concerns.</li>
                     </ul>
                     <div class="card-body text-center">
-                        <a href="{{route('login_form')}}" class="btn btn-outline-primary">Login</a>
+                        <a href="{{route('login')}}" class="btn btn-outline-primary">Login</a>
                     </div>
                 </div>
 
@@ -73,13 +73,13 @@
                                 <label>Confirm Password:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                        <div class="input-group-text"><i class="fas fa-check"></i></div>
                                     </div>
                                     <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-default float-right">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-default float-right">Submit</button>
                             </div>
                         </form>
                     </div>
