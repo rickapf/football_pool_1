@@ -14,8 +14,6 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">You will receive a confirmation email shortly. Please keep it for future reference.</li>
-                        <li class="list-group-item">Please visit the 'Rules & Info' page to familiarize yourself with how the pool works.</li>
-                        <li class="list-group-item">Use the 'Feedback' form to contact me with any questions or concerns.</li>
                     </ul>
                     <div class="card-body text-center">
                         <a href="{{route('login')}}" class="btn btn-primary">Login</a>
@@ -84,7 +82,7 @@
                                 <label>Confirm Password:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-check"></i></div>
+                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
                                     </div>
                                     <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
                                 </div>

@@ -56,26 +56,4 @@ class RegisterRequest extends FormRequest
             'password.confirmed' => 'Passwords do not match'
         ];
     }
-
-
-    /**
-     * @param $validator
-     */
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator)
-        {
-            # Only do this validaion only after all initial validation passed
-            if (!$validator->failed()) {
-
-                # Validate user and password combination
-                try {
-                    $user = User::where('id', $this->id)->where('email', $this->email)->firstOrFail();
-                } catch (ModelNotFoundException $e) {
-                    $validator->errors()->add('id', 'Name and/or email address is incorrect');
-                }
-
-            }
-        });
-    }
 }
