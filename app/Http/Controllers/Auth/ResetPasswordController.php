@@ -10,12 +10,18 @@ use App\Http\Requests\Auth\ResetPasswordRequest;
 
 class ResetPasswordController extends Controller
 {
+    /**
+     * ResetPasswordController constructor.
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         # TODO: Create a shared method for this (in model?)
@@ -25,6 +31,11 @@ class ResetPasswordController extends Controller
     }
 
 
+    /**
+     * @param ResetPasswordRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendLink(ResetPasswordRequest $request)
     {
         $data = $request->validated();
