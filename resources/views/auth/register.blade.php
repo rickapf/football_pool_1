@@ -18,7 +18,7 @@
                         <li class="list-group-item">Use the 'Feedback' form to contact me with any questions or concerns.</li>
                     </ul>
                     <div class="card-body text-center">
-                        <a href="{{route('login')}}" class="btn btn-outline-primary">Login</a>
+                        <a href="{{route('login')}}" class="btn btn-primary">Login</a>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                 @include('partials.errors')
                 <div class="card card-outline-secondary">
                     <div class="card-header">
-                        <h3 class="mb-0 text-primary"><i class="fas fa-user-plus mr-1"></i> Register</h3>
+                        <h4 class="mb-0 text-primary"><i class="fas fa-user-plus mr-1"></i> Register</h4>
                     </div>
                     <div class="card-body">
                         <form class="form text-dark" method="post" action="{{route('create_user')}}">
@@ -57,9 +57,20 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><i class="fas fa-at"></i></div>
                                     </div>
-                                    <input type="email" name="email" maxlength="50" value="{{old('email')}}" class="form-control">
+                                    <input name="email" maxlength="50" value="{{old('email')}}" class="form-control">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label>Confirm Email Address:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                    </div>
+                                    <input name="email_confirmation" maxlength="50" value="{{old('email_confirmation')}}" class="form-control">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label>Password:</label>
                                 <div class="input-group">

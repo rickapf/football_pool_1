@@ -9,7 +9,7 @@
 
             <div class="card card-outline-secondary">
                 <div class="card-header">
-                    <h3 class="mb-0 text-primary"><i class="fas fa-sign-in-alt mr-1"></i> Login</h3>
+                    <h4 class="mb-0 text-primary"><i class="fas fa-sign-in-alt mr-1"></i> Login</h4>
                 </div>
                 <div class="card-body">
                     <form class="form text-dark" method="post" action="{{route('authenticate')}}">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="form-group inline">
-                            <a href="#" class="btn btn-link pl-0 pr-0 pb-0">forgot password?</a>
+                            <a href="{{route('reset_password')}}" class="btn btn-link pl-0 pr-0 pb-0">forgot password?</a>
                             <button type="submit" class="btn btn-primary float-right">Submit</button>
                         </div>
                     </form>

@@ -20,3 +20,6 @@ Route::get('register', 'Auth\RegisterController@index')->name('register');
 Route::post('register', 'Auth\RegisterController@createUser')->name('create_user');
 
 Route::get('logout', 'Auth\LogoutController@index')->name('logout');
+
+Route::get('password/reset', 'Auth\ResetPasswordController@index')->name('reset_password');
+Route::post('password/reset', 'Auth\ResetPasswordController@sendLink')->name('send_reset_password_link');

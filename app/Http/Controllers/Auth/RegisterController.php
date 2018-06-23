@@ -45,6 +45,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
+        # TODO: make sure first name/last name combo isn't already being used
+        # TODO: send email
+        # TODO: increment number of participants in pool (create event? admin table?)
+
         return back()->with(['fname' => $user->fname]);
     }
 }
