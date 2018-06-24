@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Base as BaseModel;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends BaseModel
+class User extends Authenticatable
 {
+    use Notifiable;
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['fname', 'lname', 'email', 'password'];
+
     /**
      * Don't return these fields in query results
      *
