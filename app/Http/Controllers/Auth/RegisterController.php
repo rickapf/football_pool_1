@@ -40,16 +40,14 @@ class RegisterController extends Controller
         $data = $request->validated();
 
         $user = User::create([
-            'fname'    => $data['fname'],
-            'lname'    => $data['lname'],
+            'fname'    => ucfirst($data['fname']),
+            'lname'    => ucfirst($data['lname']),
             'email'    => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
 
         event(new UserRegistered($user));
 
-        # TODO: make sure first name/last name combo isn't already being used
-        # TODO: make sure first and last name are upper cased.
         # TODO: increment number of participants in pool (after event fired. admin table?)
         # TODO: Send myself a text message (after event fired)
 

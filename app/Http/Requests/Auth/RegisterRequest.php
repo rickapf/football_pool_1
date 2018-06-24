@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class RegisterRequest extends FormRequest
 {
@@ -55,5 +56,23 @@ class RegisterRequest extends FormRequest
             'password.alpha_num' => 'Password can contain letters and numbers only',
             'password.confirmed' => 'Passwords do not match'
         ];
+    }
+
+
+    /**
+     * @param $validator
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator)
+        {
+            # Only do this validaion only after all initial validation passed
+            if (!$validator->failed()) {
+                # Make sure first & last name combo hasn't already registered
+                if ($user = User::where('fname', $this->fname)->where('lname', $this->lname)->first()) {
+                    $validator->errors()->add('id', $this->fname . ' ' . $this->lname . ' is already registered');
+                }
+            }
+        });
     }
 }
