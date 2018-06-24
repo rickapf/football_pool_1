@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\Models\User;
+use App\Events\UserRegistered;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
-use App\Mail\RegistrationConfirmationMail;
 use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
@@ -48,11 +46,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
-        # TODO: Create an event and send email when fired
-        Mail::send(new RegistrationConfirmationMail($user));
+        event(new UserRegistered($user));
 
         # TODO: make sure first name/last name combo isn't already being used
-        # TODO: increment number of participants in pool (after even fired. admin table?)
+        # TODO: make sure first and last name are upper cased.
+        # TODO: increment number of participants in pool (after event fired. admin table?)
         # TODO: Send myself a text message (after event fired)
 
         return back()->with(['fname' => $user->fname]);

@@ -17,6 +17,7 @@ class RegistrationConfirmationMail extends Mailable
      */
     protected $user;
 
+
     /**
      * RegistrationConfirmationMail constructor.
      *
@@ -26,6 +27,7 @@ class RegistrationConfirmationMail extends Mailable
     {
         $this->user = $user;
     }
+
 
     /**
      * Build the message.
