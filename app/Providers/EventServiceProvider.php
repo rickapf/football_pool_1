@@ -14,7 +14,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'App\Events\UserRegistered' => [
-            'App\Listeners\SendRegistrationConfirmationEmail',
+            'App\Listeners\Registration\SendConfirmationEmail',
+            'App\Listeners\Registration\NotifyPoolAdmin'
         ],
     ];
 
