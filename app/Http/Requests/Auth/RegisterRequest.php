@@ -26,8 +26,8 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'fname'    => 'bail|required|alpha|max:30',
-            'lname'    => 'bail|required|alpha|max:30',
+            'fname'    => 'bail|required|regex:/^[a-zA-Z .]+$/|max:30',
+            'lname'    => 'bail|required|regex:/^[a-zA-Z .]+$/|max:30',
             'email'    => 'bail|required|email|confirmed|max:30',
             'password' => 'bail|required|alpha_num|confirmed|max:30'
         ];
@@ -43,10 +43,10 @@ class RegisterRequest extends FormRequest
     {
         return [
             'fname.required'     => 'First Name is required',
-            'fname.alpha'        => 'First Name can only contain letters',
+            'fname.regex'        => 'First Name can only contain only letters',
             'fname.max'          => 'First Name can contain a maximum of 30 characters',
             'lname.required'     => 'Last Name is required',
-            'lname.alpha'        => 'Last Name can only contain letters',
+            'lname.regex'        => 'Last Name can only contain letters',
             'lname.max'          => 'Last Name can contain a maximum of 30 characters',
             'email.required'     => 'Email Address is required',
             'email.email'        => 'Email Address is not valid',
