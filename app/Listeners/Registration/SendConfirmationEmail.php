@@ -8,15 +8,19 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Mail\RegistrationConfirmationMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendConfirmationEmail
+class SendConfirmationEmail implements ShouldQueue
 {
+    /**
+     * @var string
+     */
+    public $queue = 'reg_confirmation_email';
+
 
     /**
      * @param UserRegistered $event
      */
     public function handle(UserRegistered $event)
     {
-        # TODO: queue it up
         Mail::send(new RegistrationConfirmationMail($event->user));
     }
 }
