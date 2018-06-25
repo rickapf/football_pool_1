@@ -15,4 +15,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password'];
+
+
+    /**
+     * @return mixed
+     */
+    public static function dropDown()
+    {
+        return static::get(['id', 'fname', 'lname'])->sortBy('fname')->toArray();
+
+    }
 }

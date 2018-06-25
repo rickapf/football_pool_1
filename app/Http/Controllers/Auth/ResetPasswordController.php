@@ -24,10 +24,7 @@ class ResetPasswordController extends Controller
      */
     public function index()
     {
-        # TODO: Create a shared method for this (in model?)
-        $users = User::get(['id', 'fname', 'lname'])->sortBy('fname')->toArray();
-
-        return view('auth.passwords.request_link', compact('users'));
+        return view('auth.passwords.request_link', ['users' => User::dropDown()]);
     }
 
 

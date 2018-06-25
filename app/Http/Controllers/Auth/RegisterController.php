@@ -48,9 +48,6 @@ class RegisterController extends Controller
 
         event(new UserRegistered($user));
 
-        # TODO: increment number of participants in pool (after event fired. admin table?)
-        # TODO: Send myself a text message (after event fired)
-
         return back()->with(['fname' => $user->fname]);
     }
 }
