@@ -45,10 +45,10 @@ class LoginController extends Controller
     {
         $credentials = $request->validated();
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended(route('home'));
+        if (!Auth::attempt($credentials)) {
+            return back()->withErrors("Login failed")->withInput();
         }
 
-        return back()->withErrors("Login failed")->withInput();
+        return redirect()->intended(route('home'));
     }
 }
