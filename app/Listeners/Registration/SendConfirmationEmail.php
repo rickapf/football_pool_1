@@ -4,7 +4,6 @@ namespace App\Listeners\Registration;
 
 use App\Events\UserRegistered;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Queue\InteractsWithQueue;
 use App\Mail\RegistrationConfirmationMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

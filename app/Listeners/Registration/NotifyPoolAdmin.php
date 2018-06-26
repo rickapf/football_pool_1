@@ -2,7 +2,6 @@
 
 namespace App\Listeners\Registration;
 
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 use App\Events\UserRegistered as UserRegisteredEvent;

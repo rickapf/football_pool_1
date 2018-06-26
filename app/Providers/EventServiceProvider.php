@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Registration\SendConfirmationEmail',
             'App\Listeners\Registration\NotifyPoolAdmin'
         ],
+        'App\Events\UserRequestedResetPasswordLink' => [
+            'App\Listeners\SendPasswordResetEmail'
+        ],
     ];
 
     /**

@@ -5,7 +5,7 @@ namespace App\Mail;
 use App\Models\User;
 use Illuminate\Mail\Mailable;
 
-class RegistrationConfirmationMail extends Mailable
+class ResetPasswordMail extends Mailable
 {
     /**
      * @var User
@@ -14,7 +14,7 @@ class RegistrationConfirmationMail extends Mailable
 
 
     /**
-     * RegistrationConfirmationMail constructor.
+     * ResetPasswordMail constructor.
      *
      * @param User $user
      */
@@ -32,12 +32,10 @@ class RegistrationConfirmationMail extends Mailable
     public function build()
     {
         return $this->to($this->user->email)
-                    ->subject('Registration Confirmation')
-                    ->view('emails.registration_confirmation')
+                    ->subject('Reset Password')
+                    ->view('emails.reset_password')
                     ->with([
-                        'fname' => $this->user->fname,
-                        'lname' => $this->user->lname,
-                        'email' => $this->user->email
+                        'fname' => $this->user->fname
                     ]);
     }
 }

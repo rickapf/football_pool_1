@@ -4,7 +4,7 @@ namespace App\Events;
 
 use App\Models\User;
 
-class UserRegistered
+class UserRequestedResetPasswordLink
 {
     /**
      * @var User
@@ -13,7 +13,7 @@ class UserRegistered
 
 
     /**
-     * UserRegistered constructor.
+     * UserRequestedResetPasswordLink constructor.
      *
      * @param User $user
      */

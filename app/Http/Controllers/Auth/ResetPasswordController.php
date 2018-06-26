@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Events\UserRequestedResetPasswordLink;
 use App\Http\Requests\Auth\ResetPasswordRequest;
 
 class ResetPasswordController extends Controller
@@ -37,7 +37,7 @@ class ResetPasswordController extends Controller
     {
         $data = $request->validated();
 
-        # TODO: Send email
+        event(new UserRequestedResetPasswordLink(User::find($data['id'])));
 
         return back()->with(['email' => $data['email']]);
     }
