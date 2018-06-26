@@ -17,20 +17,21 @@
             <img src="/img/team_logos.png">
         </div>
         <h4 class="p-1 text-primary font-weight-bold">Thomas Fitzgerald Sr. Memorial Football Pool</h4>
-        @if (Auth::user())
-            <div class="text-center">
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href="{{route('home')}}"><i class="fas fa-home"></i> HOME</a>
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-info-circle"></i> RULES/INFO</a>
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-pencil-alt"></i> PICKS</a>
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-list-ol"></i> STANDINGS</a>
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-comment"></i> FEEDBACK</a>
-                <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-wrench"></i> ADMIN</a>
-                <a class="btn btn-sm btn-outline-primary text-danger" role="button" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
-            </div>
-        @endif
     </div>
 
     <hr class="mt-0 mb-2">
+
+    @if (Auth::user())
+        <div class="text-center">
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href="{{route('home')}}"><i class="fas fa-home"></i> HOME</a>
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-info-circle"></i> RULES/INFO</a>
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-pencil-alt"></i> PICKS</a>
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-list-ol"></i> STANDINGS</a>
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-comment"></i> FEEDBACK</a>
+            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-wrench"></i> ADMIN</a>
+            <a class="btn btn-sm btn-outline-primary text-danger" role="button" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+        </div>
+    @endif
 
     @yield('content')
 
