@@ -44,7 +44,7 @@ class ForgotPasswordController extends Controller
         $reset = PasswordReset::create([
             'user_id' => $data['id'],
             'token'   => Hash::make($token),
-            'expires' => Carbon::now()->addHour()
+            'expires' => Carbon::now()->modify(config('pool.reset_password_link.expire'))
         ]);
 
         event(new UserRequestedResetPasswordLink(User::find($data['id']), $token, $reset->id));
