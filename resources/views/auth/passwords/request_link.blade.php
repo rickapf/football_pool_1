@@ -18,7 +18,7 @@
                 @include('partials.errors')
                 <div class="card card-outline-secondary">
                     <div class="card-header">
-                        <h4 class="mb-0 text-primary"><i class="fas fa-redo"></i> Reset Password</h4>
+                        <h4 class="mb-0 text-primary"><i class="fas fa-user-lock"></i> Forgot Password</h4>
                     </div>
                     <div class="card-body">
                         <form class="form text-dark" method="post" action="{{route('send_reset_password_link')}}">

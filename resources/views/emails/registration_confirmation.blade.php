@@ -12,6 +12,6 @@ Good luck & enjoy the season!
 <br><br>
 -Patrick
 <br><br>
-<a href="http://nfl.ricka.net">http://nfl.ricka.net</a>
+<a href="{{route('home')}}">{{route('home')}}</a>
 <br><br>
 <small><b>Do not reply. This email is an automated notification which is unable to receive replies.</b></small>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Models\User;
+use App\Models\PasswordReset;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -27,8 +29,7 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'    => 'bail|required|integer',
-            'email' => 'bail|required|email|max:30'
+            'password' => 'bail|required|alpha_num|confirmed|max:30'
         ];
     }
 
@@ -41,11 +42,9 @@ class ResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'id.required'    => 'Name is required',
-            'id.integer'     => 'Name is not valid',
-            'email.required' => 'Email Address is required',
-            'email.email'    => 'Email Address is not valid',
-            'email.max'      => 'Email Address can contain a maximum of 30 characters',
+            'password.required'  => 'Password is required',
+            'password.alpha_num' => 'Password can contain letters and numbers only',
+            'password.confirmed' => 'Passwords do not match'
         ];
     }
 
@@ -57,15 +56,34 @@ class ResetPasswordRequest extends FormRequest
     {
         $validator->after(function ($validator)
         {
-            # Only do this validaion only after all initial validation passed
+            # Only do these validaions after all initial validation passed
             if (!$validator->failed()) {
 
-                # Validate user and password combination
-                try {
-                    $user = User::where('id', $this->id)->where('email', $this->email)->firstOrFail();
-                } catch (ModelNotFoundException $e) {
-                    $validator->errors()->add('id', 'Name and/or email address is incorrect');
-                }
+                do {
+
+                    # Make sure password reset request exists
+                    try {
+                        $pr = PasswordReset::findOrFail($this->id);
+                    } catch (ModelNotFoundException $e) {
+                        $validator->errors()->add('id', 'Reset password request not found');
+                        break;
+                    }
+
+                    # Make sure request hasn't expired
+                    #Carbon::setTestNow(Carbon::create(2018, 7, 4, 23));
+                    if (Carbon::now() > $pr->expires) {
+                        PasswordReset::destroy($pr->id);
+                        $validator->errors()->add('id', 'Reset password request has expired');
+                        break;
+                    }
+
+                    # Validate token
+                    if (!Hash::check($this->token, $pr->token)) {
+                        $validator->errors()->add('id', 'Invalid token');
+                        break;
+                    }
+
+                } while (0);
 
             }
         });

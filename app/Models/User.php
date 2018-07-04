@@ -23,6 +23,5 @@ class User extends Authenticatable
     public static function dropDown()
     {
         return static::get(['id', 'fname', 'lname'])->sortBy('fname')->toArray();
-
     }
 }

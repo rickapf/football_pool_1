@@ -20,6 +20,6 @@ class SendPasswordResetEmail implements ShouldQueue
      */
     public function handle(UserRequestedResetPasswordLink $event)
     {
-        Mail::send(new ResetPasswordMail($event->user));
+        Mail::send(new ResetPasswordMail($event->user, $event->token, $event->resetId));
     }
 }

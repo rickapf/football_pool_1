@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class LogoutController extends Controller
 {
     /**
-     * LoginController constructor.
+     * LogoutController constructor.
      */
     public function __construct()
     {
@@ -22,11 +22,9 @@ class LogoutController extends Controller
 
 
     /**
-     * Logout
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function logout()
     {
         Auth::logout();
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\PasswordReset;
 use App\Http\Controllers\Controller;
-use App\Events\UserRequestedResetPasswordLink;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\ResetPasswordRequest;
 
 class ResetPasswordController extends Controller
@@ -20,11 +21,14 @@ class ResetPasswordController extends Controller
 
 
     /**
+     * @param $token
+     * @param $resetId
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function showResetForm($resetId, $token)
     {
-        return view('auth.passwords.request_link', ['users' => User::dropDown()]);
+        return view('auth.passwords.reset', compact('resetId', 'token'));
     }
 
 
@@ -33,12 +37,21 @@ class ResetPasswordController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendLink(ResetPasswordRequest $request)
+    public function resetPassword(ResetPasswordRequest $request)
     {
-        $data = $request->validated();
+        # Reset password
+        $userId = PasswordReset::find($request->id)->user_id;
+        $user = User::find($userId);
+        $user->password = Hash::make($request->password);
+        $user->save();
 
-        event(new UserRequestedResetPasswordLink(User::find($data['id'])));
+        # Delete request
+        PasswordReset::destroy($request->id);
 
-        return back()->with(['email' => $data['email']]);
+        # Login the user
+        Auth::login($user);
+
+        # Redirect to home page
+        return redirect(route('home'));
     }
 }

@@ -24,11 +24,9 @@ class LoginController extends Controller
 
 
     /**
-     * Show login form
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function showLoginForm()
     {
         return view('auth.login', ['users' => User::dropDown()]);
     }

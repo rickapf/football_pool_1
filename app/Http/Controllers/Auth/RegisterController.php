@@ -20,11 +20,9 @@ class RegisterController extends Controller
 
 
     /**
-     * Show registration form
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function showRegistrationForm()
     {
         return view('auth.register', []);
     }

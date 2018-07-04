@@ -12,15 +12,28 @@ class ResetPasswordMail extends Mailable
      */
     protected $user;
 
+    /**
+     * @var
+     */
+    protected $token;
+
+    /**
+     * @var
+     */
+    protected $resetId;
+
 
     /**
      * ResetPasswordMail constructor.
      *
      * @param User $user
+     * @param      $token
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $token, $resetId)
     {
-        $this->user = $user;
+        $this->user    = $user;
+        $this->token   = $token;
+        $this->resetId = $resetId;
     }
 
 
@@ -35,7 +48,9 @@ class ResetPasswordMail extends Mailable
                     ->subject('Reset Password')
                     ->view('emails.reset_password')
                     ->with([
-                        'fname' => $this->user->fname
+                        'fname'   => $this->user->fname,
+                        'token'   => $this->token,
+                        'resetId' => $this->resetId
                     ]);
     }
 }
