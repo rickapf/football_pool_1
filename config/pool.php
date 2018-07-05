@@ -9,6 +9,12 @@ return [
 
     'reset_password_link' => [
         'expire' => '1 hour'
+    ],
+
+    'cache' => [
+        'keys' => [
+            'user_dropdown' => 'user_dropdown'
+        ]
     ]
 
 ];

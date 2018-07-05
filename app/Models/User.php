@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,8 @@ class User extends Authenticatable
      */
     public static function dropDown()
     {
-        return static::get(['id', 'fname', 'lname'])->sortBy('fname')->toArray();
+        return Cache::rememberForever(config('pool.cache.keys.user_dropdown'), function () {
+            return static::get(['id', 'fname', 'lname'])->sortBy('fname')->toArray();
+        });
     }
 }

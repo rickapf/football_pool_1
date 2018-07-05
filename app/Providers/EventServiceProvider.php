@@ -15,7 +15,8 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\UserRegistered' => [
             'App\Listeners\Registration\SendConfirmationEmail',
-            'App\Listeners\Registration\NotifyPoolAdmin'
+            'App\Listeners\Registration\NotifyPoolAdmin',
+            'App\Listeners\Registration\ClearUserDropDownCache',
         ],
         'App\Events\UserRequestedResetPasswordLink' => [
             'App\Listeners\SendPasswordResetEmail'
