@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group inline">
                             <a href="{{route('forgot_password_form')}}" class="btn btn-link pl-0 pr-0 pb-0">forgot password?</a>
-                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+                            <button type="submit" class="btn btn-primary float-right">Login</button>
                         </div>
                     </form>
                 </div>

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-4 offset-md-4">
+        <div class="col-md-6 offset-md-3">
 
             @if (session('fname'))
 
@@ -31,64 +31,68 @@
                     <div class="card-body">
                         <form class="form text-dark" method="post" action="{{route('create_user')}}">
                             @csrf
-                            <div class="form-group">
-                                <label>First Name:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>First Name:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                        </div>
+                                        <input type="text" name="fname" maxlength="30" value="{{old('fname')}}" class="form-control" placeholder="First Name">
                                     </div>
-                                    <input type="text" name="fname" maxlength="30" value="{{old('fname')}}" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Last Name:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                        </div>
+                                        <input type="text" name="lname" maxlength="30" value="{{old('lname')}}" class="form-control" placeholder="Last Name">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Last Name:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Email Address:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                        </div>
+                                        <input name="email" maxlength="50" value="{{old('email')}}" class="form-control" placeholder="Email">
                                     </div>
-                                    <input type="text" name="lname" maxlength="30" value="{{old('lname')}}" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm Email Address:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-at"></i></div>
+                                        </div>
+                                        <input name="email_confirmation" maxlength="50" value="{{old('email_confirmation')}}" class="form-control" placeholder="Confirm Email">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Email Address:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-at"></i></div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Password:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                        </div>
+                                        <input type="password" name="password" maxlength="30" value="" class="form-control" placeholder="Password">
                                     </div>
-                                    <input name="email" maxlength="50" value="{{old('email')}}" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Confirm Password:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-key"></i></div>
+                                        </div>
+                                        <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control" placeholder="Confirm Password">
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label>Confirm Email Address:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-at"></i></div>
-                                    </div>
-                                    <input name="email_confirmation" maxlength="50" value="{{old('email_confirmation')}}" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Password:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
-                                    </div>
-                                    <input type="password" name="password" maxlength="30" value="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Confirm Password:</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fas fa-key"></i></div>
-                                    </div>
-                                    <input type="password" name="password_confirmation" maxlength="30" value="" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-default float-right">Submit</button>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-default">Register</button>
                             </div>
                         </form>
                     </div>

@@ -3,7 +3,7 @@
 # AUTHENTICATION ROUTES
 Route::namespace('Auth')->group(function () {
 
-     # GUEST
+     # GUEST USERS
     Route::middleware(['guest'])->group(function () {
 
         # REGISTRATION
@@ -28,7 +28,7 @@ Route::namespace('Auth')->group(function () {
 
     });
 
-    # AUTHENTICATED
+    # AUTHENTICATED USERS
     Route::middleware(['auth'])->group(function () {
 
         # LOGOUT
