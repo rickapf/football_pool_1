@@ -11,15 +11,6 @@ use App\Http\Requests\Auth\RegisterRequest;
 class RegisterController extends Controller
 {
     /**
-     * RegisterController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRegistrationForm()

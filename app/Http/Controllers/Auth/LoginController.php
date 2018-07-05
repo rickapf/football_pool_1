@@ -15,15 +15,6 @@ use App\Http\Requests\Auth\LoginRequest;
 class LoginController extends Controller
 {
     /**
-     * LoginController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showLoginForm()

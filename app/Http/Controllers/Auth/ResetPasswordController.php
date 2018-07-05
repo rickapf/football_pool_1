@@ -12,15 +12,6 @@ use App\Http\Requests\Auth\ResetPasswordRequest;
 class ResetPasswordController extends Controller
 {
     /**
-     * ResetPasswordController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-
-    /**
      * @param $token
      * @param $resetId
      *
