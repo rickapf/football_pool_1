@@ -13,6 +13,6 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-# authentication routes (login, register, forgot/reset password, etc ...)
+# authentication routes
 include('web/auth.php');
 
