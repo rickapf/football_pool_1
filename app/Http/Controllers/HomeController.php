@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\Authentication;
+use Illuminate\Support\Facades\Auth;
+
 /**
  * Class HomeController
  *
@@ -9,20 +12,35 @@ namespace App\Http\Controllers;
  */
 class HomeController extends Controller
 {
-    /**
-     * HomeController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
+    use Authentication;
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        return view('home');
+        /*
+         * user is logged in
+         * show the home page
+         */
+        if (Auth::check()) {
+            return view('home');
+        }
+
+        /*
+         * user is not logged in
+         * reg deadline passed
+         * redirect to login page
+         */
+        if ($this->registrationDeadlinePassed()) {
+            return redirect(route('login'));
+        }
+
+        /*
+         * user is not logged in
+         * reg deadline has not passed
+         * redirect to registration page
+         */
+        return redirect(route('register'));
     }
 }

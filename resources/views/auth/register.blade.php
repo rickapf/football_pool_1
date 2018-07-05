@@ -91,8 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary btn-default">Register</button>
+                            <div class="form-group inline">
+                                <a href="{{route('login')}}" class="btn btn-link pl-0 pr-0 pb-0">already registered?</a>
+                                <button type="submit" class="btn btn-primary float-right">Register</button>
                             </div>
                         </form>
                     </div>

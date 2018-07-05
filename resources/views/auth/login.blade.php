@@ -39,6 +39,10 @@
                         </div>
                         <div class="form-group inline">
                             <a href="{{route('forgot_password_form')}}" class="btn btn-link pl-0 pr-0 pb-0">forgot password?</a>
+                            @if (!$deadlinePassed)
+                                <span class="btn pl-0 pr-0 pb-0 ml-1 mr-1">|</span>
+                                <a href="{{route('register')}}" class="btn btn-link pl-0 pr-0 pb-0">not registered?</a>
+                            @endif
                             <button type="submit" class="btn btn-primary float-right">Login</button>
                         </div>
                     </form>
