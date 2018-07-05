@@ -8,22 +8,22 @@ Route::namespace('Auth')->group(function () {
 
         # REGISTRATION
         Route::prefix('register')->group(function () {
-            Route::get('/', 'RegisterController@showRegistrationForm')->name('register');
+            Route::get('/',  'RegisterController@showRegistrationForm')->name('register');
             Route::post('/', 'RegisterController@createUser')->name('create_user');
         });
 
         # LOGIN
         Route::prefix('login')->group(function () {
-            Route::get('/', 'LoginController@showLoginForm')->name('login');
+            Route::get('/',  'LoginController@showLoginForm')->name('login');
             Route::post('/', 'LoginController@authenticate')->name('authenticate');
         });
 
         # PASSWORD
         Route::prefix('password')->group(function () {
-            Route::get('forgot', 'ForgotPasswordController@showForgotPasswordForm')->name('forgot_password_form');
-            Route::post('forgot', 'ForgotPasswordController@sendLink')->name('send_reset_password_link');
+            Route::get('forgot',             'ForgotPasswordController@showForgotPasswordForm')->name('forgot_password_form');
+            Route::post('forgot',            'ForgotPasswordController@sendLink')->name('send_reset_password_link');
             Route::get('reset/{id}/{token}', 'ResetPasswordController@showResetForm')->name('reset_password_form');
-            Route::post('reset', 'ResetPasswordController@resetPassword')->name('reset_password');
+            Route::post('reset',             'ResetPasswordController@resetPassword')->name('reset_password');
         });
 
     });
