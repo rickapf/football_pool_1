@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Authentication;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class HomeController extends Controller
 {
-    use Authentication;
-
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function index()
     {
@@ -32,7 +30,7 @@ class HomeController extends Controller
          * reg deadline passed
          * redirect to login page
          */
-        if ($this->registrationDeadlinePassed()) {
+        if (Setting::registrationDeadlinePassed()) {
             return redirect(route('login'));
         }
 

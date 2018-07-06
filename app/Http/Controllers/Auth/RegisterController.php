@@ -3,22 +3,20 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Setting;
 use App\Events\UserRegistered;
-use App\Traits\Authentication;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 
 class RegisterController extends Controller
 {
-    use Authentication;
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRegistrationForm()
     {
-        if ($this->registrationDeadlinePassed()) {
+        if (Setting::registrationDeadlinePassed()) {
             return redirect(route('login'));
         }
 

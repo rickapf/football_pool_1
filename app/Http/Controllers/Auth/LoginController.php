@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Traits\Authentication;
+use App\Models\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
@@ -15,8 +15,6 @@ use App\Http\Requests\Auth\LoginRequest;
  */
 class LoginController extends Controller
 {
-    use Authentication;
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -24,7 +22,7 @@ class LoginController extends Controller
     {
         return view('auth.login', [
             'users' => User::dropDown(),
-            'deadlinePassed' => $this->registrationDeadlinePassed()
+            'deadlinePassed' => Setting::registrationDeadlinePassed()
         ]);
     }
 
