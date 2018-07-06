@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
  *
  * @package App\Http\Controllers
  */
-class HomeController extends Controller
+class PicksController extends Controller
 {
     public function __construct()
     {
@@ -20,6 +20,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['tab' => 'home']);
+        return view('picks');
     }
 }

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{Auth::user()->fname}}
+
+    <h5>Hello {{Auth::user()->fname}}, welcome to week 1</h5>
+
 @endsection

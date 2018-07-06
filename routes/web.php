@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
 # authentication routes
 include('web/auth.php');
+
+Route::get('/',          'IndexController@index')->name('index');
+Route::get('/home',      'HomeController@index')->name('home');
+Route::get('/rules',     'RulesController@index')->name('rules');
+Route::get('/picks',     'PicksController@index')->name('picks');
+Route::get('/standings', 'StandingsController@index')->name('standings');
+Route::get('/feedback',  'FeedbackController@index')->name('feedback');
+Route::get('/admin',     'AdminController@index')->name('admin');
 

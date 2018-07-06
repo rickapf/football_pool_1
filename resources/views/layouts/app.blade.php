@@ -19,21 +19,40 @@
         <h4 class="p-1 text-primary font-weight-bold">Thomas Fitzgerald Sr. Memorial Football Pool</h4>
     </div>
 
-    <hr class="mt-0 mb-2">
-
     @if (Auth::user())
-        <div class="text-center">
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href="{{route('home')}}"><i class="fas fa-home"></i> HOME</a>
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-info-circle"></i> RULES/INFO</a>
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-pencil-alt"></i> PICKS</a>
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-list-ol"></i> STANDINGS</a>
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-comment"></i> FEEDBACK</a>
-            <a class="btn btn-sm btn-outline-primary mr-1" role="button" href=""><i class="fas fa-wrench"></i> ADMIN</a>
-            <a class="btn btn-sm btn-outline-primary text-danger" role="button" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('home')}}" href={{route('home')}}><i class="fas fa-home"></i> HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('rules')}}" href="{{route('rules')}}"><i class="fas fa-info-circle"></i> RULES/INFO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('picks')}}" href="{{route('picks')}}"><i class="fas fa-pencil-alt"></i> PICKS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('standings')}}" href="{{route('standings')}}"><i class="fas fa-list-ol"></i> STANDINGS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('feedback')}}" href="{{route('feedback')}}"><i class="fas fa-comment"></i> FEEDBACK</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{{setActiveNavTab('admin')}}" href="{{route('admin')}}"><i class="fas fa-wrench"></i> ADMIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                @yield('content')
+            </div>
         </div>
+    @else
+        @yield('content')
     @endif
-
-    @yield('content')
 
 </div>
 
