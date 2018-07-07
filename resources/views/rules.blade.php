@@ -25,7 +25,7 @@
             </div>
             <div id="prizes" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    PRIZES
+                    @include('partials.rules.prizes')
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             </div>
             <div id="payment" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    PAYMENT
+                    @include('partials.rules.payment')
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             </div>
             <div id="picks" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    MAKING PICKS
+                    @include('partials.rules.picks')
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div id="auto_picks" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    AUTO PICKER
+                    @include('partials.rules.auto_picker')
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             </div>
             <div id="tie_breakers" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    TIE BREAKERS
+                    @include('partials.rules.tie_breakers')
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
             </div>
             <div id="best_bet" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    BEST BET
+                    @include('partials.rules.best_bet')
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
             </div>
             <div id="scoring" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    SCORING
+                    @include('partials.rules.scoring')
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
             </div>
             <div id="standings" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    STANDINGS
+                    @include('partials.rules.standings')
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
             </div>
             <div id="misc" class="collapse" data-parent="#rules">
                 <div class="card-body">
-                    MISCALLANEOUS
+                    @include('partials.rules.misc')
                 </div>
             </div>
         </div>

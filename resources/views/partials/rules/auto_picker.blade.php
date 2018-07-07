@@ -1,0 +1,2 @@
+<p>If you don't make your picks by the deadlines your picks will be made for you by the computer. This is to ensure that everyone is entered in the pool each week.</p>
+<p>The computer will randomly select each game for you and also randomly pick your best bet and tiebreaker points.</p>

@@ -1,0 +1,2 @@
+Each week you will be required to choose one of the teams you picked to win as your "best bet". This pick will be worth more points than a regular win so you want to pick a
+team that you are confident can win that week.
