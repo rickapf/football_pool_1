@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
+
 /**
  * Class HomeController
  *
@@ -20,6 +22,8 @@ class RulesController extends Controller
      */
     public function index()
     {
-        return view('rules');
+        $settings = Setting::first()->toArray();
+
+        return view('rules', ['settings' => $settings]);
     }
 }

@@ -14,7 +14,11 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
+            $table->tinyInteger('current_week')->default(0);
             $table->timestamp('registration_deadline');
+            $table->tinyInteger('number_of_weeks');
+            $table->tinyInteger('cost_per_week');
+            $table->tinyInteger('total_cost');
         });
     }
 
