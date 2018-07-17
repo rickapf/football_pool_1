@@ -28,6 +28,7 @@ class ResetPasswordMail extends Mailable
      *
      * @param User $user
      * @param      $token
+     * @param      $resetId
      */
     public function __construct(User $user, $token, $resetId)
     {

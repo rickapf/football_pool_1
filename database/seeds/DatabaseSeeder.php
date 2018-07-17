@@ -11,8 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(SettingsTableSeeder::class);
-        $this->call(TeamsTableSeeder::class);
+        $env = App::environment();
+
+        switch ($env) {
+            case 'production':
+                $this->call(SettingsTableSeeder::class);
+                $this->call(TeamsTableSeeder::class);
+                break;
+            default:
+                $this->call(UsersTableSeeder::class);
+                $this->call(SettingsTableSeeder::class);
+                $this->call(TeamsTableSeeder::class);
+        }
     }
 }

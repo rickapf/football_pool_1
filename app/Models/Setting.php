@@ -21,4 +21,13 @@ class Setting extends Model
         #Carbon::setTestNow(Carbon::create(2018, 9, 7, 0, 0));
         return (Carbon::now() > static::first()->registration_deadline);
     }
+
+
+    /**
+     * @return mixed
+     */
+    public static function newWeek()
+    {
+        return static::first()->current_week + 1;
+    }
 }
