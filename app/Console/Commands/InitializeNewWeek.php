@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Models\Setting;
 use Illuminate\Console\Command;
 use GuzzleHttp\Exception\TransferException;
+use Illuminate\Support\Carbon;
 
 class InitializeNewWeek extends Command
 {
@@ -53,13 +54,17 @@ class InitializeNewWeek extends Command
         $games = $this->getGames($week);
 
         $games->each(function ($item, $key) use ($week) {
-            $game = new Game();
-            $game->week = $week;
-            $game->number = $key + 1;
-            $game->home_team = Team::idByAbbreviation($item->home);
-            $game->away_team = Team::idByAbbreviation($item->away);
-            $game->when = $item->time;
-            $game->save();
+            Game::updateOrCreate(
+                [
+                    'week' => $week,
+                    'home_team' => Team::idByAbbreviation($item->home),
+                    'away_team' => Team::idByAbbreviation($item->away)
+                ],
+                [
+                    'number' => $key + 1,
+                    'when'   => $item->time
+                ]
+            );
         });
     }
 
