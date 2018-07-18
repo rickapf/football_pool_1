@@ -56,7 +56,7 @@ class InitializeNewWeek extends Command
         $games->each(function ($item, $key) use ($week) {
             Game::updateOrCreate(
                 [
-                    'week' => $week,
+                    'week'      => $week,
                     'home_team' => Team::idByAbbreviation($item->home),
                     'away_team' => Team::idByAbbreviation($item->away)
                 ],

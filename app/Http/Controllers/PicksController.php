@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\Setting;
+
 /**
  * Class HomeController
  *
@@ -20,6 +23,9 @@ class PicksController extends Controller
      */
     public function index()
     {
-        return view('picks');
+        $week  = Setting::first()->current_week;
+        $games = Game::where('week', $week)->orderBy('when')->get();
+
+        return view('picks', compact('week', 'games'));
     }
 }
