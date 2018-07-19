@@ -4,8 +4,8 @@
             <h5 class="text-white"><i class="fas fa-exclamation-triangle"></i> Errors</h5>
         </div>
         <div class="card-body">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            @foreach (array_unique($errors->all()) as $error)
+                <li>{{$error}}</li>
             @endforeach
         </div>
     </div>
