@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Setting;
+use App\Http\Requests\SubmitPicksRequest;
 
 /**
  * Class HomeController
@@ -21,11 +22,18 @@ class PicksController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function makePicks()
     {
         $week  = Setting::first()->current_week;
         $games = Game::where('week', $week)->orderBy('when')->get();
 
-        return view('picks', compact('week', 'games'));
+        return view('picks', ['games' => $games]);
+    }
+
+
+    public function savePicks(SubmitPicksRequest $request)
+    {
+        $data = $request->validated();
+        dd($data);
     }
 }

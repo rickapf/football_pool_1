@@ -30,7 +30,7 @@
                         <a class="{{setActiveNavTab('rules')}}" href="{{route('rules')}}"><i class="fas fa-info-circle"></i> RULES/INFO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="{{setActiveNavTab('picks')}}" href="{{route('picks')}}"><i class="fas fa-pencil-alt"></i> PICKS</a>
+                        <a class="{{setActiveNavTab('picks')}}" href="{{route('make_picks')}}"><i class="fas fa-pencil-alt"></i> PICKS</a>
                     </li>
                     <li class="nav-item">
                         <a class="{{setActiveNavTab('standings')}}" href="{{route('standings')}}"><i class="fas fa-list-ol"></i> STANDINGS</a>
