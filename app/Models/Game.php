@@ -18,12 +18,18 @@ class Game extends Model
     protected $dates = ['when'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function homeTeam()
     {
         return $this->hasOne(Team::class, 'id', 'home_team');
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function awayTeam()
     {
         return $this->hasOne(Team::class, 'id', 'away_team');
