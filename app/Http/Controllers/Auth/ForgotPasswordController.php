@@ -18,7 +18,7 @@ class ForgotPasswordController extends Controller
      */
     public function showForgotPasswordForm()
     {
-        return view('auth.passwords.request_link', ['users' => User::dropDown()]);
+        return view('auth.passwords.request_link', []);
     }
 
 
