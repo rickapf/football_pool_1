@@ -3,8 +3,9 @@
 return [
 
     'admin' => [
-        'phone' => env('ADMIN_PHONE', '15165283123'),
-        'name'  => env('ADMIN_NAME', 'Patrick'),
+        'phone' => env('ADMIN_PHONE'),
+        'name'  => env('ADMIN_NAME'),
+        'email' => env('ADMIN_EMAIL')
     ],
 
     'reset_password_link' => [
