@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Entry;
 use App\Models\Setting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SubmitPicksRequest;
 
@@ -24,8 +25,9 @@ class PicksController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function makePicks()
+    public function makePicks(Request $request)
     {
+        dd($request->all());
         $games = Game::where('week', Setting::first()->current_week)->orderBy('when')->get();
 
         return view('picks', ['games' => $games]);
@@ -62,6 +64,6 @@ class PicksController extends Controller
             ]
         );
 
-        return back()->with(['fname' => Auth::user()->fname]);
+        return back()->with(['first_name' => Auth::user()->first_name]);
 }
 }

@@ -32,7 +32,7 @@
                                     <select name="id" class="form-control">
                                         <option value=""></option>
                                         @foreach (\App\Models\User::dropDown() as $user)
-                                            <option value="{{$user['id']}}" @if($user['id'] == old('id')) selected @endif>{{$user['fname'] . ' ' . $user['lname']}}</option>
+                                            <option value="{{$user->id}}" @if($user->id == old('id')) selected @endif>{{$user->full_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -15,9 +15,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
-        'fname'    => $faker->firstName,
-        'lname'    => $faker->lastName,
-        'email'    => $faker->email,
-        'password' => Hash::make('pool')
+        'first_name' => $faker->firstName,
+        'last_name'  => $faker->lastName,
+        'email'      => $faker->email,
+        'password'   => 'pool'
     ];
 });

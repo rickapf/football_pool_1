@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
 
-            @if (session('fname'))
+            @if (session('first_name'))
 
                 <!-- SUCCESSFULLY REGISTERED -->
                 <div class="card">
                     <div class="card-header bg-success text-center text-white">
-                        <h4>Welcome to the pool {{session('fname')}}!</h4>
+                        <h4>Welcome to the pool {{session('first_name')}}!</h4>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">You will receive a confirmation email shortly. Please keep it for future reference.</li>
@@ -38,7 +38,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                                         </div>
-                                        <input type="text" name="fname" maxlength="30" value="{{old('fname')}}" class="form-control" placeholder="First Name">
+                                        <input type="text" name="first_name" maxlength="30" value="{{old('first_name')}}" class="form-control" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -47,7 +47,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                                         </div>
-                                        <input type="text" name="lname" maxlength="30" value="{{old('lname')}}" class="form-control" placeholder="Last Name">
+                                        <input type="text" name="last_name" maxlength="30" value="{{old('last_name')}}" class="form-control" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>

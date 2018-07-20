@@ -34,14 +34,14 @@ class RegisterController extends Controller
         $data = $request->validated();
 
         $user = User::create([
-            'fname'    => ucfirst($data['fname']),
-            'lname'    => ucfirst($data['lname']),
-            'email'    => $data['email'],
-            'password' => Hash::make($data['password'])
+            'first_name' => $data['first_name'],
+            'last_name'  => $data['last_name'],
+            'email'      => $data['email'],
+            'password'   => $data['password']
         ]);
 
         event(new UserRegistered($user));
 
-        return back()->with(['fname' => $user->fname]);
+        return back()->with(['first_name' => $user->first_name]);
     }
 }

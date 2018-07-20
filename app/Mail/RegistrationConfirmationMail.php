@@ -35,9 +35,9 @@ class RegistrationConfirmationMail extends Mailable
                     ->subject('Registration Confirmation')
                     ->view('emails.registration_confirmation')
                     ->with([
-                        'fname' => $this->user->fname,
-                        'lname' => $this->user->lname,
-                        'email' => $this->user->email
+                        'first_name' => $this->user->first_name,
+                        'last_name'  => $this->user->last_name,
+                        'email'      => $this->user->email
                     ]);
     }
 }

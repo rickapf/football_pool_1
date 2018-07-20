@@ -15,16 +15,21 @@
         <div class="row">
             <div class="col-md-8 ml-md-auto mr-md-auto">
 
-                @if (session('fname'))
+                @if (session('first_name'))
 
                     <!-- PICKS MADE -->
                     <div class="card">
                         <div class="card-header bg-success text-center text-white">
-                            <h4>Thank you {{session('fname')}}. Your picks have been submitted.</h4>
+                            <h4>Thank you {{session('first_name')}}. Your picks have been submitted.</h4>
                         </div>
                     </div>
 
                 @else
+
+                    <div class="text-center pb-2">
+                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary">pick all games</a>
+                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary">pick thursday games</a>
+                    </div>
 
                     <form method="post" action="{{route('save_picks')}}">
                     @csrf

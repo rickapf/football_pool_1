@@ -49,9 +49,9 @@ class ResetPasswordMail extends Mailable
                     ->subject('Reset Password')
                     ->view('emails.reset_password')
                     ->with([
-                        'fname'   => $this->user->fname,
-                        'token'   => $this->token,
-                        'resetId' => $this->resetId
+                        'first_name' => $this->user->first_name,
+                        'token'      => $this->token,
+                        'resetId'    => $this->resetId
                     ]);
     }
 }

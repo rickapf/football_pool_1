@@ -6,7 +6,7 @@
 
         <div class="card w-75 border-0 mx-auto">
             <div class="card-header text-center bg-white">
-                <h5>Hello {{Auth::user()->fname}}, welcome to the pool.</h5>
+                <h5>Hello {{Auth::user()->first_name}}, welcome to the pool.</h5>
             </div>
             <div class="card-body">
                 <ul>

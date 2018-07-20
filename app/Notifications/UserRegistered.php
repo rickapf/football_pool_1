@@ -44,7 +44,7 @@ class UserRegistered extends Notification
      */
     public function toNexmo()
     {
-        return (new NexmoMessage())->content($this->user->fname . ' ' . $this->user->lname . ' joined the football pool');
+        return (new NexmoMessage())->content($this->user->first_name . ' ' . $this->user->last_name . ' joined the football pool');
     }
 
 }
