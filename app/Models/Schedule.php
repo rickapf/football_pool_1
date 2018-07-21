@@ -4,8 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Schedule extends Model
 {
+    /**
+     * @var string
+     */
+    protected $table = 'schedule';
+
+
     /**
      * @var array
      */

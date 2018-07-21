@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game;
 use App\Models\Entry;
 use App\Models\Setting;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SubmitPicksRequest;
@@ -32,10 +32,10 @@ class PicksController extends Controller
         $week = Setting::first()->current_week;
 
         if ($request->make == 'thursday') {
-            $games      = Game::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->get();
+            $games      = Schedule::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->get();
             $picks_made = 'thursday';
         } else {
-            $games      = Game::where('week', $week)->orderBy('number')->get();
+            $games      = Schedule::where('week', $week)->orderBy('number')->get();
             $picks_made = 'all';
         }
 

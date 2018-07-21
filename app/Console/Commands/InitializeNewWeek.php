@@ -2,13 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Game;
 use App\Models\Team;
 use GuzzleHttp\Client;
 use App\Models\Setting;
+use App\Models\Schedule;
 use Illuminate\Console\Command;
 use GuzzleHttp\Exception\TransferException;
-use Illuminate\Support\Carbon;
 
 class InitializeNewWeek extends Command
 {
@@ -54,7 +53,7 @@ class InitializeNewWeek extends Command
         $games = $this->getGames($week);
 
         $games->each(function ($item, $key) use ($week) {
-            Game::updateOrCreate(
+            Schedule::updateOrCreate(
                 [
                     'week'      => $week,
                     'home_team' => Team::idByAbbreviation($item->home),
