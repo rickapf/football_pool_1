@@ -34,4 +34,22 @@ class Game extends Model
     {
         return $this->hasOne(Team::class, 'id', 'away_team');
     }
+
+
+    /**
+     * @return mixed
+     */
+    public static function thursdayDeadline()
+    {
+        return static::where('week', Setting::first()->current_week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->first()->when;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public static function weekendDeadline()
+    {
+        return static::where('week', Setting::first()->current_week)->whereRaw("DAYNAME(`when`) != 'thursday'")->orderBy('number')->first()->when;
+    }
 }

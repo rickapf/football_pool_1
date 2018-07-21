@@ -10,6 +10,8 @@ class Entry extends Model
         'user_id',
         'week',
         'picks_made',
+        'thursday_picked_by',
+        'weekend_picked_by',
         'game_1',
         'game_2',
         'game_3',

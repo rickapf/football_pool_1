@@ -23,20 +23,35 @@ class PicksController extends Controller
 
 
     /**
+     * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function makePicks(Request $request)
     {
-        dd($request->all());
-        $games = Game::where('week', Setting::first()->current_week)->orderBy('when')->get();
+        $week = Setting::first()->current_week;
 
-        return view('picks', ['games' => $games]);
+        if ($request->make == 'thursday') {
+            $games      = Game::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->get();
+            $picks_made = 'thursday';
+        } else {
+            $games      = Game::where('week', $week)->orderBy('number')->get();
+            $picks_made = 'all';
+        }
+
+        return view('picks', compact('games', 'picks_made'));
     }
 
-
+    /**
+     * @param SubmitPicksRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function savePicks(SubmitPicksRequest $request)
     {
         $data = $request->validated();
+
+        if ($request->picks_made )
 
         Entry::updateOrCreate(
             [
@@ -44,23 +59,25 @@ class PicksController extends Controller
                 'week'    => Setting::first()->current_week,
             ],
             [
-                'picks_made' => 'all',
-                'game_1'     => (isset($data['game_1']))  ? $data['game_1']  : null,
-                'game_2'     => (isset($data['game_2']))  ? $data['game_2']  : null,
-                'game_3'     => (isset($data['game_3']))  ? $data['game_3']  : null,
-                'game_4'     => (isset($data['game_4']))  ? $data['game_4']  : null,
-                'game_5'     => (isset($data['game_5']))  ? $data['game_5']  : null,
-                'game_6'     => (isset($data['game_6']))  ? $data['game_6']  : null,
-                'game_7'     => (isset($data['game_7']))  ? $data['game_7']  : null,
-                'game_8'     => (isset($data['game_8']))  ? $data['game_8']  : null,
-                'game_9'     => (isset($data['game_9']))  ? $data['game_9']  : null,
-                'game_10'    => (isset($data['game_10'])) ? $data['game_10'] : null,
-                'game_11'    => (isset($data['game_11'])) ? $data['game_11'] : null,
-                'game_12'    => (isset($data['game_12'])) ? $data['game_12'] : null,
-                'game_13'    => (isset($data['game_13'])) ? $data['game_13'] : null,
-                'game_14'    => (isset($data['game_14'])) ? $data['game_14'] : null,
-                'game_15'    => (isset($data['game_15'])) ? $data['game_15'] : null,
-                'game_16'    => (isset($data['game_16'])) ? $data['game_16'] : null,
+                'picks_made'         => $request->picks_made,
+                'thursday_picked_by' => ($request->picks_made == 'thursday') ? 'person'         : null,
+                'weekend_picked_by'  => ($request->picks_made == 'all')      ? 'person'         : null,
+                'game_1'             => (isset($data['game_1']))             ? $data['game_1']  : null,
+                'game_2'             => (isset($data['game_2']))             ? $data['game_2']  : null,
+                'game_3'             => (isset($data['game_3']))             ? $data['game_3']  : null,
+                'game_4'             => (isset($data['game_4']))             ? $data['game_4']  : null,
+                'game_5'             => (isset($data['game_5']))             ? $data['game_5']  : null,
+                'game_6'             => (isset($data['game_6']))             ? $data['game_6']  : null,
+                'game_7'             => (isset($data['game_7']))             ? $data['game_7']  : null,
+                'game_8'             => (isset($data['game_8']))             ? $data['game_8']  : null,
+                'game_9'             => (isset($data['game_9']))             ? $data['game_9']  : null,
+                'game_10'            => (isset($data['game_10']))            ? $data['game_10'] : null,
+                'game_11'            => (isset($data['game_11']))            ? $data['game_11'] : null,
+                'game_12'            => (isset($data['game_12']))            ? $data['game_12'] : null,
+                'game_13'            => (isset($data['game_13']))            ? $data['game_13'] : null,
+                'game_14'            => (isset($data['game_14']))            ? $data['game_14'] : null,
+                'game_15'            => (isset($data['game_15']))            ? $data['game_15'] : null,
+                'game_16'            => (isset($data['game_16']))            ? $data['game_16'] : null,
             ]
         );
 

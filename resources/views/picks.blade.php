@@ -27,12 +27,13 @@
                 @else
 
                     <div class="text-center pb-2">
-                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary">pick all games</a>
-                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary">pick thursday games</a>
+                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary {{setActivePicksButton()}}">pick all games</a>
+                        <a href="{{route('make_picks')}}?make=thursday" class="btn btn-sm btn-outline-primary {{setActivePicksButton('thursday')}}">pick thursday games</a>
                     </div>
 
                     <form method="post" action="{{route('save_picks')}}">
                     @csrf
+                    <input type="hidden" name="picks_made" value="{{$picks_made}}">
                     @foreach($games as $game)
                         <input type="hidden" name="game_{{$game->number}}_available" value="true">
                     @endforeach
@@ -73,7 +74,7 @@
                                 {{$game->when->format('g:i A \E\T')}}
                             </td>
                             <td class="align-middle">
-                                <input type="radio" name="game_{{$game->number}}" value="{{$game->home_team}}" @if(old("game_{$game->number}") == $game->home_team) checked @endif>
+                                <input onse type="radio" name="game_{{$game->number}}" value="{{$game->home_team}}" @if(old("game_{$game->number}") == $game->home_team) checked @endif>
                                 <img src="/img/logos/{{$game->homeTeam->abbreviation}}.gif" width="30" height="30">
                                 {{$game->homeTeam->city.' '.$game->homeTeam->name}}
                                 ({{$game->homeTeam->wins.'-'.$game->homeTeam->losses.'-'.$game->homeTeam->ties}})
