@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Entry extends Model
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'week',
@@ -28,5 +32,17 @@ class Entry extends Model
         'game_14',
         'game_15',
         'game_16',
+        'tiebreaker_points'
     ];
+
+
+    /**
+     * @param $week
+     *
+     * @return mixed
+     */
+    public static function userPicks($week)
+    {
+        return static::where('week', $week)->where('user_id', Auth::user()->id)->first();
+    }
 }

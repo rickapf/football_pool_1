@@ -15,7 +15,7 @@ class Schedule extends Model
     /**
      * @var array
      */
-    protected $fillable = ['week', 'number', 'home_team', 'away_team', 'when'];
+    protected $fillable = ['week', 'number', 'home_team', 'away_team', 'when', 'home_spread', 'away_spread'];
 
 
     /**
@@ -43,19 +43,45 @@ class Schedule extends Model
 
 
     /**
+     * @param $week
+     *
      * @return mixed
      */
-    public static function thursdayDeadline()
+    public static function thursdayGames($week)
     {
-        return static::where('week', Setting::first()->current_week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->first()->when;
+        return Schedule::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->get();
     }
 
 
     /**
+     * @param $week
+     *
      * @return mixed
      */
-    public static function weekendDeadline()
+    public static function allGames($week)
     {
-        return static::where('week', Setting::first()->current_week)->whereRaw("DAYNAME(`when`) != 'thursday'")->orderBy('number')->first()->when;
+        return Schedule::where('week', $week)->orderBy('number')->get();
+    }
+
+
+    /**
+     * @param $week
+     *
+     * @return mixed
+     */
+    public static function thursdayDeadline($week)
+    {
+        return static::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->first()->when;
+    }
+
+
+    /**
+     * @param $week
+     *
+     * @return mixed
+     */
+    public static function weekendDeadline($week)
+    {
+        return static::where('week', $week)->whereRaw("DAYNAME(`when`) != 'thursday'")->orderBy('number')->first()->when;
     }
 }

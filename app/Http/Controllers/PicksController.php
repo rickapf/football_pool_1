@@ -29,17 +29,38 @@ class PicksController extends Controller
      */
     public function makePicks(Request $request)
     {
-        $week = Setting::first()->current_week;
+        $week  = Setting::first()->current_week;
+        $picks = Entry::userPicks($week);
+
+        $thursday_picked_by = ($picks) ? $picks->thursday_picked_by : 'person';
+        $tiebreaker_points  = ($picks) ? $picks->tiebreaker_points  : null;
 
         if ($request->make == 'thursday') {
-            $games      = Schedule::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->get();
-            $picks_made = 'thursday';
+            $games = Schedule::thursdayGames($week);
+            $flags = [
+                'picks_made'         => 'thursday',
+                'thursday_picked_by' => $thursday_picked_by,
+                'weekend_picked_by'  => null
+            ];
         } else {
-            $games      = Schedule::where('week', $week)->orderBy('number')->get();
-            $picks_made = 'all';
+            $games = Schedule::allGames($week);
+            $flags = [
+                'picks_made'         => 'all',
+                'thursday_picked_by' => $thursday_picked_by,
+                'weekend_picked_by'  => 'person'
+            ];
         }
 
-        return view('picks', compact('games', 'picks_made'));
+        # Add picks data to games data
+        if ($picks) {
+            $games->transform(function ($game, $key) use ($picks) {
+                $gameVar = 'game_' . $game->number;
+                $game->picked = $picks->$gameVar;
+                return $game;
+            });
+        }
+
+        return view('picks.main', compact('games', 'flags', 'tiebreaker_points'));
     }
 
     /**
@@ -51,8 +72,6 @@ class PicksController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->picks_made )
-
         Entry::updateOrCreate(
             [
                 'user_id' => Auth::user()->id,
@@ -60,27 +79,28 @@ class PicksController extends Controller
             ],
             [
                 'picks_made'         => $request->picks_made,
-                'thursday_picked_by' => ($request->picks_made == 'thursday') ? 'person'         : null,
-                'weekend_picked_by'  => ($request->picks_made == 'all')      ? 'person'         : null,
-                'game_1'             => (isset($data['game_1']))             ? $data['game_1']  : null,
-                'game_2'             => (isset($data['game_2']))             ? $data['game_2']  : null,
-                'game_3'             => (isset($data['game_3']))             ? $data['game_3']  : null,
-                'game_4'             => (isset($data['game_4']))             ? $data['game_4']  : null,
-                'game_5'             => (isset($data['game_5']))             ? $data['game_5']  : null,
-                'game_6'             => (isset($data['game_6']))             ? $data['game_6']  : null,
-                'game_7'             => (isset($data['game_7']))             ? $data['game_7']  : null,
-                'game_8'             => (isset($data['game_8']))             ? $data['game_8']  : null,
-                'game_9'             => (isset($data['game_9']))             ? $data['game_9']  : null,
-                'game_10'            => (isset($data['game_10']))            ? $data['game_10'] : null,
-                'game_11'            => (isset($data['game_11']))            ? $data['game_11'] : null,
-                'game_12'            => (isset($data['game_12']))            ? $data['game_12'] : null,
-                'game_13'            => (isset($data['game_13']))            ? $data['game_13'] : null,
-                'game_14'            => (isset($data['game_14']))            ? $data['game_14'] : null,
-                'game_15'            => (isset($data['game_15']))            ? $data['game_15'] : null,
-                'game_16'            => (isset($data['game_16']))            ? $data['game_16'] : null,
+                'thursday_picked_by' => $request->thursday_picked_by,
+                'weekend_picked_by'  => $request->weekend_picked_by,
+                'game_1'             => (isset($data['game_1']))  ? $data['game_1']  : null,
+                'game_2'             => (isset($data['game_2']))  ? $data['game_2']  : null,
+                'game_3'             => (isset($data['game_3']))  ? $data['game_3']  : null,
+                'game_4'             => (isset($data['game_4']))  ? $data['game_4']  : null,
+                'game_5'             => (isset($data['game_5']))  ? $data['game_5']  : null,
+                'game_6'             => (isset($data['game_6']))  ? $data['game_6']  : null,
+                'game_7'             => (isset($data['game_7']))  ? $data['game_7']  : null,
+                'game_8'             => (isset($data['game_8']))  ? $data['game_8']  : null,
+                'game_9'             => (isset($data['game_9']))  ? $data['game_9']  : null,
+                'game_10'            => (isset($data['game_10'])) ? $data['game_10'] : null,
+                'game_11'            => (isset($data['game_11'])) ? $data['game_11'] : null,
+                'game_12'            => (isset($data['game_12'])) ? $data['game_12'] : null,
+                'game_13'            => (isset($data['game_13'])) ? $data['game_13'] : null,
+                'game_14'            => (isset($data['game_14'])) ? $data['game_14'] : null,
+                'game_15'            => (isset($data['game_15'])) ? $data['game_15'] : null,
+                'game_16'            => (isset($data['game_16'])) ? $data['game_16'] : null,
+                'tiebreaker_points'  => (isset($request->tiebreaker_points)) ? $request->tiebreaker_points : null
             ]
         );
 
         return back()->with(['first_name' => Auth::user()->first_name]);
-}
+    }
 }

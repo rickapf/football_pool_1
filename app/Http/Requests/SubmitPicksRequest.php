@@ -42,6 +42,7 @@ class SubmitPicksRequest extends FormRequest
             "game_14" => "required_if:game_14_available,true",
             "game_15" => "required_if:game_15_available,true",
             "game_16" => "required_if:game_16_available,true",
+            'tiebreaker_points' => "bail|required_if:picks_made,all|numeric"
         ];
     }
 
@@ -70,6 +71,8 @@ class SubmitPicksRequest extends FormRequest
             'game_14.required_if' => 'You must pick all games',
             'game_15.required_if' => 'You must pick all games',
             'game_16.required_if' => 'You must pick all games',
+            'tiebreaker_points.required_if' => 'Tiebreaker points is required',
+            'tiebreaker_points.numeric'     => 'Tiebreaker points must be numeric'
         ];
     }
 }
