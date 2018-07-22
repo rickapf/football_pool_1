@@ -25,6 +25,8 @@
 
                     @include('picks.form')
 
+                    @include('picks.js')
+
                 @endif
 
             </div>
