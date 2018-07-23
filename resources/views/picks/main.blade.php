@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-8 ml-md-auto mr-md-auto">
 
-                @if (session('first_name'))
+                @if (session('picks_made'))
 
                     @include('picks.made')
 

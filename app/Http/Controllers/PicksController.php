@@ -74,7 +74,7 @@ class PicksController extends Controller
 
         Entry::updateOrCreate(
             [
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::id(),
                 'week'    => Setting::first()->current_week,
             ],
             [
@@ -101,6 +101,6 @@ class PicksController extends Controller
             ]
         );
 
-        return back()->with(['first_name' => Auth::user()->first_name]);
+        return back()->with(['picks_made' => true]);
     }
 }

@@ -43,6 +43,6 @@ class Entry extends Model
      */
     public static function userPicks($week)
     {
-        return static::where('week', $week)->where('user_id', Auth::user()->id)->first();
+        return static::where('week', $week)->where('user_id', Auth::id())->first();
     }
 }

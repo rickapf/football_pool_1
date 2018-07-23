@@ -9,7 +9,7 @@
 
     @include('partials.errors')
 
-    <table class="table table-sm mb-0"> <!-- mb-0 ????? -->
+    <table class="table table-sm mb-0">
 
         @foreach($games as $game)
 
