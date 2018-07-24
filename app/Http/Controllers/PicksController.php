@@ -34,24 +34,25 @@ class PicksController extends Controller
 
         $thursday_picked_by = ($picks) ? $picks->thursday_picked_by : 'person';
         $tiebreaker_points  = ($picks) ? $picks->tiebreaker_points  : null;
+        $picks_already_made = ($picks) ? $picks->picks_made         : 'none';
 
         if ($request->make == 'thursday') {
             $games = Schedule::thursdayGames($week);
             $flags = [
-                'picks_made'         => 'thursday',
+                'making_picks'       => 'thursday',
                 'thursday_picked_by' => $thursday_picked_by,
                 'weekend_picked_by'  => null
             ];
         } else {
             $games = Schedule::allGames($week);
             $flags = [
-                'picks_made'         => 'all',
+                'making_picks'       => 'all',
                 'thursday_picked_by' => $thursday_picked_by,
                 'weekend_picked_by'  => 'person'
             ];
         }
 
-        # Add picks data to games data
+        # Add picked game to games data
         if ($picks) {
             $games->transform(function ($game, $key) use ($picks) {
                 $gameVar = 'game_' . $game->number;
@@ -60,7 +61,7 @@ class PicksController extends Controller
             });
         }
 
-        return view('picks.main', compact('games', 'flags', 'tiebreaker_points'));
+        return view('picks.main', compact('games', 'flags', 'tiebreaker_points', 'picks_already_made'));
     }
 
     /**
@@ -78,7 +79,7 @@ class PicksController extends Controller
                 'week'    => Setting::first()->current_week,
             ],
             [
-                'picks_made'         => $request->picks_made,
+                'picks_made'         => $request->making_picks,
                 'thursday_picked_by' => $request->thursday_picked_by,
                 'weekend_picked_by'  => $request->weekend_picked_by,
                 'game_1'             => (isset($data['game_1']))  ? $data['game_1']  : null,

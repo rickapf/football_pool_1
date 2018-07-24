@@ -53,7 +53,7 @@
             </tr>
 
             <!-- TIEBREAKER POINTS ROW -->
-            @if ($loop->last && $flags['picks_made'] == 'all')
+            @if ($loop->last && $flags['making_picks'] == 'all')
                 <tr>
                     <td class="border-left border-bottom border-top-0">&nbsp;</td>
                     <td colspan="2" class="text-center border-left border-top-0 border-bottom">

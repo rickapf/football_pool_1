@@ -29,6 +29,13 @@ function setActivePicksButton($make = null)
 }
 
 
+/**
+ * @param      $game
+ * @param null $prevGameDay
+ * @param      $tiebreakerPoints
+ *
+ * @return array
+ */
 function getPickFormVars($game, $prevGameDay = null, $tiebreakerPoints)
 {
     $homeClass = $awayClass = $homeChecked = $awayChecked = '';
