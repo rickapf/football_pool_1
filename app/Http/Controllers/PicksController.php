@@ -52,16 +52,27 @@ class PicksController extends Controller
             ];
         }
 
-        # Add picked game to games data
+        # Add picked|deadline_passed to game data
         if ($picks) {
-            $games->transform(function ($game, $key) use ($picks) {
+            $games->transform(function ($game, $key) use ($picks, $week)
+            {
+                # picked
                 $gameVar = 'game_' . $game->number;
                 $game->picked = $picks->$gameVar;
+
+                # deadline_passed
+                #\Illuminate\Support\Carbon::setTestNow(\Illuminate\Support\Carbon::create(2018, 9, 10, 0, 0));
+                if ($game->when->format('l') == 'Thursday') {
+                    $game->deadline_passed = Schedule::thursdayDeadlinePassed($week);
+                } else {
+                    $game->deadline_passed = Schedule::weekendDeadlinePassed($week);
+                }
+
                 return $game;
             });
         }
-
-        return view('picks.main', compact('games', 'flags', 'tiebreaker_points', 'picks_already_made'));
+        
+        return view('picks.main', compact('games', 'flags', 'tiebreaker_points', 'picks_already_made', 'week'));
     }
 
     /**

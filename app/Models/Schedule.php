@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Schedule extends Model
 {
@@ -67,21 +68,21 @@ class Schedule extends Model
     /**
      * @param $week
      *
-     * @return mixed
+     * @return bool
      */
-    public static function thursdayDeadline($week)
+    public static function thursdayDeadlinePassed($week)
     {
-        return static::where('week', $week)->whereRaw("DAYNAME(`when`) = 'thursday'")->orderBy('number')->first()->when;
+        return (Carbon::now() > static::where('week', $week)->whereRaw("DAYNAME(`when`) = 'Thursday'")->orderBy('number')->first()->when);
     }
 
 
     /**
      * @param $week
      *
-     * @return mixed
+     * @return bool
      */
-    public static function weekendDeadline($week)
+    public static function weekendDeadlinePassed($week)
     {
-        return static::where('week', $week)->whereRaw("DAYNAME(`when`) != 'thursday'")->orderBy('number')->first()->when;
+        return (Carbon::now() > static::where('week', $week)->whereRaw("DAYNAME(`when`) != 'Thursday'")->orderBy('number')->first()->when);
     }
 }

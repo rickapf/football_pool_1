@@ -38,7 +38,7 @@ function setActivePicksButton($make = null)
  */
 function getPickFormVars($game, $prevGameDay = null, $tiebreakerPoints)
 {
-    $homeClass = $awayClass = $homeChecked = $awayChecked = '';
+    $homeClass = $awayClass = $homeChecked = $awayChecked = $gameDisabled = $tiebreakerDisabled = '';
     $classString   = 'bg-success text-white';
     $checkedString = 'checked';
 
@@ -78,17 +78,29 @@ function getPickFormVars($game, $prevGameDay = null, $tiebreakerPoints)
         }
     }
 
+    # Game disabled (deadline passed)
+    if ($game->deadline_passed) {
+        $gameDisabled = 'disabled';
+    }
+
+    # Tiebreaker points disabled
+    if (\App\Models\Schedule::weekendDeadlinePassed(\App\Models\Setting::first()->current_week)) {
+        $tiebreakerDisabled = 'disabled';
+    }
+
     return [
-        'show_header'       => $showHeader,
-        'prev_game_day'     => $prevGameDay,
-        'home_team_name'    => $homeTeamName,
-        'home_team_record'  => $homeTeamRecord,
-        'away_team_name'    => $awayTeamName,
-        'away_team_record'  => $awayTeamRecord,
-        'home_class'        => $homeClass,
-        'away_class'        => $awayClass,
-        'home_checked'      => $homeChecked,
-        'away_checked'      => $awayChecked,
-        'tiebreaker_points' => $tiebreakerPoints
+        'show_header'         => $showHeader,
+        'prev_game_day'       => $prevGameDay,
+        'home_team_name'      => $homeTeamName,
+        'home_team_record'    => $homeTeamRecord,
+        'away_team_name'      => $awayTeamName,
+        'away_team_record'    => $awayTeamRecord,
+        'home_class'          => $homeClass,
+        'away_class'          => $awayClass,
+        'home_checked'        => $homeChecked,
+        'away_checked'        => $awayChecked,
+        'tiebreaker_points'   => $tiebreakerPoints,
+        'game_disabled'       => $gameDisabled,
+        'tiebreaker_disabled' => $tiebreakerDisabled
     ];
 }

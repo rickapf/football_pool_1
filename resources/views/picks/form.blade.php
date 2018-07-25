@@ -38,12 +38,12 @@
                     {{$game->when->format('g:i A \E\T')}}
                 </td>
                 <td id="home_{{$game->number}}" class="align-middle border-left {{$vars['home_class']}}">
-                    <input type="radio" name="game_{{$game->number}}" value="{{$game->home_team}}" onclick="HighlightPick('home', '{{$game->number}}')" {{$vars['home_checked']}}>
+                    <input type="radio" name="game_{{$game->number}}" value="{{$game->home_team}}" onclick="HighlightPick('home', '{{$game->number}}')" {{$vars['home_checked']}} {{$vars['game_disabled']}}>
                     <img src="/img/logos/{{$game->homeTeam->abbreviation}}.gif" width="30" height="30"> {{$vars['home_team_name']}} {{$vars['home_team_record']}}
                     <span class="float-right font-weight-bold">{{$game->home_spread}}</span>
                 </td>
                 <td id="away_{{$game->number}}" class="align-middle border-left {{$vars['away_class']}}">
-                    <input type="radio" name="game_{{$game->number}}" value="{{$game->away_team}}" onclick="HighlightPick('away', '{{$game->number}}')" {{$vars['away_checked']}}>
+                    <input type="radio" name="game_{{$game->number}}" value="{{$game->away_team}}" onclick="HighlightPick('away', '{{$game->number}}')" {{$vars['away_checked']}} {{$vars['game_disabled']}}>
                     <img src="/img/logos/{{$game->awayTeam->abbreviation}}.gif" width="30" height="30"> {{$vars['away_team_name']}} {{$vars['away_team_record']}}
                     <span class="float-right font-weight-bold">{{$game->away_spread}}</span>
                 </td>
@@ -57,7 +57,7 @@
                 <tr>
                     <td class="border-left border-bottom border-top-0">&nbsp;</td>
                     <td colspan="2" class="text-center border-left border-top-0 border-bottom">
-                        tiebreaker points: <input type="text" name="tiebreaker_points" size="4" maxlength="2" value="{{$vars['tiebreaker_points']}}">
+                        tiebreaker points: <input type="text" name="tiebreaker_points" size="4" maxlength="2" value="{{$vars['tiebreaker_points']}}" {{$vars['tiebreaker_disabled']}}>
                     </td>
                     <td class="border-left border-bottom border-right border-top-0">&nbsp;</td>
                 </tr>

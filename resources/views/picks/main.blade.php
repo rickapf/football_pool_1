@@ -17,15 +17,27 @@
 
                 @else
 
-                    <!-- PICK ALL OR THURSDAY -->
-                    <div class="text-center pb-2">
-                        <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary {{setActivePicksButton()}}">pick all games</a>
-                        @if ($picks_already_made == 'all')
-                            <button type="button" class="btn btn-sm btn-outline-primary {{setActivePicksButton('thursday')}}" data-toggle="modal" data-target="#thursdayPicksWarning">pick thursday games</button>
-                        @else
-                            <a href="{{route('make_picks')}}?make=thursday" class="btn btn-sm btn-outline-primary {{setActivePicksButton('thursday')}}">pick thursday games</a>
-                        @endif
-                    </div>
+                    <!-- PICK ALL OR THURSDAY BUTTONS -->
+                    @php
+                    $thursdayDeadlinePassed = \App\Models\Schedule::thursdayDeadlinePassed($week);
+                    $weekendDeadlinePassed  = \App\Models\Schedule::weekendDeadlinePassed($week);
+                    @endphp
+
+                    @if(!$thursdayDeadlinePassed || !$weekendDeadlinePassed)
+                        <div class="text-center pb-2">
+                            @if(!$weekendDeadlinePassed)
+                                <a href="{{route('make_picks')}}" class="btn btn-sm btn-outline-primary {{setActivePicksButton()}}">pick all games</a>
+                            @endif
+                            @if(!$thursdayDeadlinePassed)
+                                @if ($picks_already_made == 'all')
+                                    <button type="button" class="btn btn-sm btn-outline-primary {{setActivePicksButton('thursday')}}" data-toggle="modal" data-target="#thursdayPicksWarning">pick thursday games</button>
+                                @else
+                                    <a href="{{route('make_picks')}}?make=thursday" class="btn btn-sm btn-outline-primary {{setActivePicksButton('thursday')}}">pick thursday games</a>
+                                @endif
+                            @endif
+                        </div>
+                    @endif
+
                     @if ($picks_already_made == 'all')
                         @include('picks.thursday_warning')
                     @endif
