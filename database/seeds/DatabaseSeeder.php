@@ -11,9 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $env = App::environment();
-
-        switch ($env) {
+        switch (App::environment()) {
             case 'production':
                 $this->call(SettingsTableSeeder::class);
                 $this->call(TeamsTableSeeder::class);
