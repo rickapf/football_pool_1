@@ -15,11 +15,11 @@
 include('web/auth.php');
 
 # INDEX
-Route::get('/',          'IndexController@index')->name('index');
+Route::get('/', 'IndexController@index')->name('index');
 
 # HOME
-Route::get('/home',      'HomeController@index')->name('home');
-Route::get('/rules',     'RulesController@index')->name('rules');
+Route::get('/home',  'HomeController@index')->name('home');
+Route::get('/rules', 'RulesController@index')->name('rules');
 
 # PICKS
 Route::prefix('picks')->group(function () {
@@ -31,8 +31,8 @@ Route::prefix('picks')->group(function () {
 Route::get('/standings', 'StandingsController@index')->name('standings');
 
 # FEEDBACK
-Route::get('/feedback',  'FeedbackController@index')->name('feedback');
+Route::get('/feedback', 'FeedbackController@index')->name('feedback');
 
 # ADMIN
-Route::get('/admin',     'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin');
 
