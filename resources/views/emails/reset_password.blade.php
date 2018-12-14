@@ -1,4 +1,4 @@
-Hello {{$fname}},
+Hello {{$first_name}},
 <br><br>
 To reset your password for the football pool click the link below (or copy and paste it into your browser) ...
 <br><br>

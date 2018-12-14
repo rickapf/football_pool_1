@@ -1,8 +1,8 @@
-Hello {{$fname}}, thanks for participating in the pool!
+Hello {{$first_name}}, thanks for participating in the pool!
 <br><br>
 Here are your registration details ...
 <br><br>
-Name: {{$fname . ' ' . $lname}}<br>
+Name: {{$first_name . ' ' . $last_name}}<br>
 Email: {{$email}}
 <br><br>
 Please take a few minutes and view the rules & info section on the site.<br>
