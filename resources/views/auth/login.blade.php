@@ -22,7 +22,7 @@
                                 </div>
                                 <select name="id" class="form-control">
                                     <option value=""></option>
-                                    @foreach (\App\Models\User::dropDown() as $user)
+                                    @foreach ($users as $user)
                                         <option value="{{$user->id}}" @if($user->id == old('id')) selected @endif>{{$user->full_name}}</option>
                                     @endforeach
                                 </select>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group inline">
                             <a href="{{route('forgot_password_form')}}" class="btn btn-link pl-0 pr-0 pb-0">forgot password?</a>
-                            @if (!\App\Models\Setting::registrationDeadlinePassed())
+                            @if (!$regDeadlinePassed)
                                 <span class="btn pl-0 pr-0 pb-0 ml-1 mr-1">|</span>
                                 <a href="{{route('register')}}" class="btn btn-link pl-0 pr-0 pb-0">not registered?</a>
                             @endif

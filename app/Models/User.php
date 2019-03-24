@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return "{$this->first_name} {$this->last_name}";
     }
 
 
@@ -61,7 +61,7 @@ class User extends Authenticatable
     public static function dropDown()
     {
         return Cache::rememberForever(config('pool.cache.keys.user_dropdown'), function () {
-            return static::all()->sortBy('first_name');
+            return static::select('id', 'first_name', 'last_name')->orderBy('first_name')->get();
         });
     }
 }

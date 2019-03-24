@@ -20,7 +20,10 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.login', []);
+        $users = User::dropDown();
+        $regDeadlinePassed = Setting::registrationDeadlinePassed();
+
+        return view('auth.login', compact('users', 'regDeadlinePassed'));
     }
 
 
